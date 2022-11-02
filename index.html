@@ -14,8 +14,13 @@
 
         // jsx : 자바스크립트를 확장한 문법이다. html과 비슷한 문법으로 사용함, React요소를 만들어 사용함
         
-        const Title = () => <h3 id ="title" onMouseEnter = {() => console.log("mouse enter")}>
-             Hello I'm a title</h3>
+        function Title() { 
+            return (
+                <h3 id ="title" onMouseEnter={() => console.log("mouse enter")}>
+                    Hello I'm a title
+                    </h3>
+            );
+        }
         
         //element를 생성 --> 옛날방식
         // const h3 = React.createElement( 
