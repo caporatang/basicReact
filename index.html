@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <div id = "root"></div>
+    <div id="root"></div>
 </body>
     <!-- react-js 임포트 하는 이유 : element 를 생성 이벤트같은것을 추가할수있게 해줌 -->
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
     <!-- element를 html로 변환하기 위해 react-dom을 사용한다-->
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script>
+    <!--  브라우저는 jsx를 일반적으로는 이해를 할수없음 :  Babel을 사용 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
         const root = document.getElementById("root");
-        //element를 생성
-        const h3 = React.createElement( "h3", {
-            id: "title",
-            onMouseEnter: () => console.log("mouse enter"),
-        },
-            "Hello, i am a span");
-        const btn = React.createElement("button",
-        {
-            onClick: () => console.log("im clicked"),
-            style: {
-                backgroundColor: "tomato",
-            }
-        },
-         "Click me"
-        );
+
+        // jsx : 자바스크립트를 확장한 문법이다. html과 비슷한 문법으로 사용함, React요소를 만들어 사용함
+        
+        const Title = <h3 id ="title" onMouseEnter = {() => console.log("mouse enter")}>
+             Hello I'm a title</h3>
+        
+        //element를 생성 --> 옛날방식
+        // const h3 = React.createElement( 
+        //     "h3", //--> html tag
+        //  {
+        //     id: "title",
+        //     onMouseEnter: () => console.log("mouse enter"),
+        // }, // --> 이벤트 및 css id, class까지 지정가능
+        //     "Hello, i am a span" ); // --> content 내용이 들어감
+
+        //jsx
+        const Button = <button style= {{
+            backgroundColor: "tomato",
+        }}
+            onClick={() => console.log("im clicked")}
+        >
+            Click me
+         </button>
+        // element를 생성 --> 옛날방식
+        // const btn = React.createElement("button",
+        // {
+        //     onClick: () => console.log("im clicked"),
+        //     style: {
+        //         backgroundColor: "tomato",
+        //     }
+        // },
+        //  "Click me"
+        // );
         
         // div안에 css같은거 없이, 정의한 h3과 btn을 갖는 컴포넌트를 생성
-        const container = React.createElement("div", null, [h3, btn]);
-        //그 컨테이너를 렌더링 
+        //const container = React.createElement("div", null, [h3, btn]);
+
+        const container = React.createElement("div", null, [Title, Button]);
+        //그 컨테이너를 렌더링  --> element들을 root라는 아이디를 가진 컴포넌트 안에서 보여줘라
         ReactDOM.render(container, root); // --> HTML의 구조로 렌더
     </script>
 
