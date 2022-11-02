@@ -2,23 +2,33 @@
 <html>
 <body>
     <div id = "root"></div>
-
-
-
 </body>
-    
+    <!-- react-js 임포트 하는 이유 : element 를 생성 이벤트같은것을 추가할수있게 해줌 -->
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- element를 html로 변환하기 위해 react-dom을 사용한다-->
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-
     <script>
         const root = document.getElementById("root");
-        const span = React.createElement("span",
-            {id:"sexy-span", style: {color: "red"}},
-             "Hello, i am a span");
-        ReactDOM.render(span, root); // --> HTML의 구조로 렌더
+        //element를 생성
+        const h3 = React.createElement( "h3", {
+            id: "title",
+            onMouseEnter: () => console.log("mouse enter"),
+        },
+            "Hello, i am a span");
+        const btn = React.createElement("button",
+        {
+            onClick: () => console.log("im clicked"),
+            style: {
+                backgroundColor: "tomato",
+            }
+        },
+         "Click me"
+        );
         
-
-
+        // div안에 css같은거 없이, 정의한 h3과 btn을 갖는 컴포넌트를 생성
+        const container = React.createElement("div", null, [h3, btn]);
+        //그 컨테이너를 렌더링 
+        ReactDOM.render(container, root); // --> HTML의 구조로 렌더
     </script>
 
 </html>
