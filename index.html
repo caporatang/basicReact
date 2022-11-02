@@ -14,7 +14,7 @@
 
         // jsx : 자바스크립트를 확장한 문법이다. html과 비슷한 문법으로 사용함, React요소를 만들어 사용함
         
-        const Title = <h3 id ="title" onMouseEnter = {() => console.log("mouse enter")}>
+        const Title = () => <h3 id ="title" onMouseEnter = {() => console.log("mouse enter")}>
              Hello I'm a title</h3>
         
         //element를 생성 --> 옛날방식
@@ -27,7 +27,7 @@
         //     "Hello, i am a span" ); // --> content 내용이 들어감
 
         //jsx
-        const Button = <button style= {{
+        const Button = () => <button style= {{
             backgroundColor: "tomato",
         }}
             onClick={() => console.log("im clicked")}
@@ -47,10 +47,16 @@
         
         // div안에 css같은거 없이, 정의한 h3과 btn을 갖는 컴포넌트를 생성
         //const container = React.createElement("div", null, [h3, btn]);
+        //const container = React.createElement("div", null, [Title, Button]);
 
-        const container = React.createElement("div", null, [Title, Button]);
+        const Container = 
+        // 시작은 반드시 대문자로 --> 소문자면 html태그로 인식함, 만든 element들은 반드시 대문자로.
+        <div>
+            <Title />
+            <Button />    
+        </div>
         //그 컨테이너를 렌더링  --> element들을 root라는 아이디를 가진 컴포넌트 안에서 보여줘라
-        ReactDOM.render(container, root); // --> HTML의 구조로 렌더
+        ReactDOM.render(Container, root); // --> HTML의 구조로 렌더
     </script>
 
 </html>
