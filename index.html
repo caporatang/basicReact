@@ -13,7 +13,6 @@
         const root = document.getElementById("root");
 
         // jsx : 자바스크립트를 확장한 문법이다. html과 비슷한 문법으로 사용함, React요소를 만들어 사용함
-        
         function Title() { 
             return (
                 <h3 id ="title" onMouseEnter={() => console.log("mouse enter")}>
@@ -57,8 +56,7 @@
         const Container = 
         // 시작은 반드시 대문자로 --> 소문자면 html태그로 인식함, 만든 element들은 반드시 대문자로.
         <div>
-            <Title />
-            <Button />    
+            
         </div>
         //그 컨테이너를 렌더링  --> element들을 root라는 아이디를 가진 컴포넌트 안에서 보여줘라
         ReactDOM.render(Container, root); // --> HTML의 구조로 렌더
