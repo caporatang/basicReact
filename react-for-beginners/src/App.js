@@ -4,15 +4,29 @@ import { useState, useEffect } from "react";
 function Hello() {
     //component가 destroyed될때 보내주는 함수
     // cleanUp fucntion이라고 한다.
-    function byFn() { 
-        console.log("bye :)");
-    }
+    // function byFn() { 
+    //     console.log("bye :)");
+    // }
 
-    function hiFn () {
-        console.log("created :)");
-        return byFn;        
-    }
-    useEffect(hiFn, []);
+    // function hiFn () {
+    //     console.log("created :)");
+    //     return byFn;        
+    // }
+
+    //같은 코드 
+    // 위에 코드를 더 자주 많이 쓰니 숙지할것.
+    // useEffect(() => {
+    //     console.log("hi :)");
+    //     return () => console.log("bye :(");
+    // }, [])
+
+    useEffect(function() { 
+        console.log("hi :)");
+        return function () { 
+            console.log("bye :(");
+        }
+    }, []);
+
     // useEffect(() => {
     //     console.log("created :)")
     //     //component가 destroyed될때 보내주는 함수
