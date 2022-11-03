@@ -55,7 +55,45 @@
             );
         }
         function KmToMiles() { 
-            return <h3> KM 2 M </h3>;
+            //디폴트 데이터를 0으로
+            const [km, setKm] = React.useState(0);
+            const [changeMode, setChangeMode] = React.useState(false);
+            const onChange = (event) => {
+                setKm(event.target.value)   
+            }
+            const reset = () => setKm(0);
+            const changeToConvert = () => {
+                setChangeMode(current => !current)
+                reset()
+            }
+            return (
+                <div> 
+                    <div>    
+                    <input
+                      value={changeMode ? km * 60 : km}
+                      id='km'
+                      placeholder='km'
+                      type='number'
+                      disabled={changeMode}
+                      onChange={onChange} 
+                    />
+                    <input
+                      value={changeMode ? km : Math.round(km / 60)}
+                      id = 'miles'  
+                      placeholder="miles"
+                      type='number'
+                      disabled = {!changeMode}
+                      onChange={onChange}
+                      
+                    />
+                    </div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={changeToConvert}>
+                            {setChangeMode ? "Turn back" : "convert"}
+                        </button>
+
+                </div>
+            )
         }
 
         function App() {
