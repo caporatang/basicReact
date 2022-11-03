@@ -1,39 +1,38 @@
 import { useState, useEffect } from "react";
 
+
+function Hello() {
+    //component가 destroyed될때 보내주는 함수
+    // cleanUp fucntion이라고 한다.
+    function byFn() { 
+        console.log("bye :)");
+    }
+
+    function hiFn () {
+        console.log("created :)");
+        return byFn;        
+    }
+    useEffect(hiFn, []);
+    // useEffect(() => {
+    //     console.log("created :)")
+    //     //component가 destroyed될때 보내주는 함수
+    //     // cleanUp fucntion이라고 한다.
+    //     return () => console.log("destroyed :(");
+    // },[])
+     return <h1>Hello</h1>
+}
+
 function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-
-  //useEffect는 최초 렌더될때 한번만 실행 시켜줌
-  useEffect(() => {
-    console.log("I run only once");
-    //빈 배열인경우 -> 조건이 없으니 최초 렌더때만 실행되는것. 
-  }, []);
-  
-  useEffect(() => {
-        console.log("I run when 'keyword' changes.")
-    //keyword가 변화되었을때만 실행
-  }, [keyword]);
-
-  useEffect(() => {
-        console.log("I run when 'counter' changes.")
-    //counter가 변화되었을때만 실행
-  }, [counter]);
-  useEffect(() => {
-    console.log("I run when keyword & counter change");
-  }, [keyword, counter])
+    
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev)
+//showin
   return (
    <div>
-    <input 
-      value={keyword}
-      onChange={onChange}
-      type="text"
-      placeholder="Search here..."
-    />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click me</button>        
+    {/* showing이 트루이면 컴포넌트 반환, false이면 null을 반환한다. */}
+    {showing ? <Hello /> : null}
+    
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
