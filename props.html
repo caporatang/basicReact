@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+<!-- react-js 임포트 하는 이유 : element 를 생성 이벤트같은것을 추가할수있게 해줌 -->
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!-- element를 html로 변환하기 위해 react-dom을 사용한다-->
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<!-- prop-types -->
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<!--  브라우저는 jsx를 일반적으로는 이해를 할수없음 :  Babel을 사용 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<script type="text/babel">
+    function Btn({ text, fontSize = 12 }) {
+        return <button
+            style={{
+                backgroundColor: "tomato",
+                color: "white",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius: 10,
+                fontSize
+            }}>
+            {text}</button>
+    }
+    // props가 변경된 컴포넌트만 reRender하라고 리액트에게 알려줌
+    //const MemorizedBtn = React.memo(Btn)
+
+    //prop-types를 설치해서 props의 어떤 형태로 props를 받을지를 정의할수있고,
+    // 타입에 맞지 않는다면 prop-types가 에러를 뱉어줌
+    Btn.propTypes = {
+        text: PropTypes.string, 
+        fontSize: PropTypes.number.isRequired,
+    };
+    function App() {
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18}/>
+                <Btn text={"Continue"}/>
+            </div>
+        );
+    };
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>
